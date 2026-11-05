@@ -1,6 +1,5 @@
 package config;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
@@ -29,7 +28,7 @@ public interface WebConfig extends Config {
     String userPassword();
 
     @Key("timeout")
-    @DefaultValue("4000") // Дефолт на случай, если в файле забудут прописать ключ
+    @DefaultValue("4000")
     long timeout();
 
     @Key("enableDetailedLogging")
