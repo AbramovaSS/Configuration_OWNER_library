@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.SetValueOptions.withText;
 import static io.restassured.RestAssured.given;
 
 
 public class UiTestsSelenide extends BaseTest {
-
     Faker faker = new Faker();
 
     String product = faker.commerce().productName();
@@ -57,7 +57,7 @@ public class UiTestsSelenide extends BaseTest {
     void addNewProduct() {
         $("[href='/admin']").click();
         $("#username").shouldBe(visible).setValue(login);
-        $("#password").setValue(password).pressEnter();
+        $("#password").setValue(withText(password).sensitive()).pressEnter();
         $("#n-name").shouldBe(visible).setValue(product);
         $("#n-price").setValue(String.valueOf(price));
         $("#add-btn").click();
@@ -153,7 +153,7 @@ public class UiTestsSelenide extends BaseTest {
 
         $("[href='/admin']").click();
         $("#username").shouldBe(visible).setValue(login);
-        $("#password").setValue(password).pressEnter();
+        $("#password").setValue(withText(password).sensitive()).pressEnter();
         $("#n-name").shouldBe(visible).setValue(product);
         $("#n-price").setValue(String.valueOf(price));
         $("#add-btn").click();
@@ -167,7 +167,7 @@ public class UiTestsSelenide extends BaseTest {
 
         $("[href='/admin']").click();
         $("#username").shouldBe(visible).setValue(login);
-        $("#password").setValue(password).pressEnter();
+        $("#password").setValue(withText(password).sensitive()).pressEnter();
 
         ElementsCollection inputs = $$("[style='width:150px']");
         inputs.get(0).setValue(product);
