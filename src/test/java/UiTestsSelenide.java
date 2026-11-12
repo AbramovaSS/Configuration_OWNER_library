@@ -114,19 +114,25 @@ public class UiTestsSelenide extends BaseTest {
     @DisplayName("Покупка 3х единиц товара")
     @Test
     void shouldPurchaseThreeUnitsOfProduct() {
-        given()
+        Integer actualProductId = given()
                 .spec(requestSpec)
                 .contentType(ContentType.JSON)
                 .body(productRequest)
                 .post("/goods/add")
                 .then()
                 .log().all()
-                .statusCode(200);
+                .statusCode(200)
+                .extract()
+                .path("data.id");
 
-        ElementsCollection qtyChange = $$("[data-step='1']");
-        qtyChange.last().click();
-        qtyChange.last().click();
-        $$("[data-action='add-to-cart']").last().click();
+        Selenide.refresh();
+
+        SelenideElement productCard = $("#card-" + actualProductId);
+
+        productCard.$("[data-action='add-to-cart']").click();
+        productCard.$("[data-action='add-to-cart']").click();
+        productCard.$("[data-action='add-to-cart']").click();
+        sleep(2000);
         $("#open-cart-btn").click();
         $("#makeOrder").click();
 
