@@ -23,8 +23,7 @@ public class DndTests extends BaseTest {
     private SelenideElement getProductCard() {
         return $("#card-" + actualProductId);
     }
-
-    SelenideElement productCard = $("[id='card-" + actualProductId + "']");
+    
     SelenideElement cartButton = $("#open-cart-btn");
     SelenideElement removeButton = $("[data-action='remove']");
     SelenideElement cartItem = $(".cart-item");
