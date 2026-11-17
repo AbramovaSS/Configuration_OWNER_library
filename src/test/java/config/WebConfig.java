@@ -36,7 +36,7 @@ public interface WebConfig extends Config {
     boolean enableDetailedLogging();
 
     @Key("startProductName")
-    @DefaultValue("Базовый Товар")
+    @DefaultValue("basic product")
     String startProductName();
 
     @Key("startProductPrice")
